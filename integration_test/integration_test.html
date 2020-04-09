@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Unit Testing Domain Validator (with Jasmine)</title>
+
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="./dummy.js.download"></script>
+
+    <link rel="stylesheet" type="text/css" href="./result-light.css">
+
+    <script type="text/javascript" src="./jasmine.min.js.download"></script>
+    <script type="text/javascript" src="./jasmine-html.min.js.download"></script>
+    <script type="text/javascript" src="./boot.min.js.download"></script>
+    <link rel="stylesheet" type="text/css" href="./jasmine.min.css">
+
+    <style id="compiled-css" type="text/css">
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- TODO: Missing CoffeeScript 2 -->
+
+    <script type="text/javascript">
+        //<![CDATA[
+
+        //CODE TO IMPLEMENT TEST
+        describe("Email domain validator", function() {       
+            it("validates emails from our domains", function() {           
+                expect(check_domain('acowan@alexandercowan.com')).toBe(true);       
+            });   
+        it("invalidates emails not from our domains", function() {           
+                expect(check_domain('alex_cowan@stanfordalumni.org')).toBe(false);       
+            }); 
+        it("invalidates badly formatted domains", function() {           
+                expect(check_domain('alex_cowan@stanfordalumni')).toBe(false);       
+            }); 
+        it("validates subdomains from our domains", function() {           
+                expect(check_domain('acowan@corp.hvachurry.com')).toBe(true);       
+            })
+        });
+
+        //CODE UNDER TEST
+        //Validates email domain
+        function check_domain(email) {
+            OKdomains = get_domains();
+            //IRL, you'd want to validate the email address through an email (which Firebase does)
+            thisdomain = email.replace(/.*@/, "");
+            if (OKdomains.indexOf(thisdomain) > -1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function get_domains() {
+            domains = ['gunk'];
+            return (domains);
+            //IRL, we'd probably want to pull this from a central source, but I decided to keep it simple for our puroses here ; ) 
+        }
+
+        //]]>
+    </script>
+
+    <script>
+        // tell the embed parent frame the height of the content
+        if (window.parent && window.parent.parent) {
+            window.parent.parent.postMessage(["resultsFrame", {
+                height: document.body.getBoundingClientRect().height,
+                slug: "esd4hL7r"
+            }], "*")
+        }
+
+        // always overwrite window.name, in case users try to set it manually
+        window.name = "result"
+    </script>
+
+
+</body>
+</html>
