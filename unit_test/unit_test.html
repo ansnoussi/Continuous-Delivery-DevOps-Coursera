@@ -1,90 +1,91 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
-  <title>Unit Testing Domain Validator (with Jasmine)</title>
-  
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <script type="text/javascript" src="./dummy.js.download"></script>
+    <title>Unit Testing Domain Validator (with Jasmine)</title>
+
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="./dummy.js.download"></script>
 
     <link rel="stylesheet" type="text/css" href="./result-light.css">
 
-      <script type="text/javascript" src="./jasmine.min.js.download"></script>
-      <script type="text/javascript" src="./jasmine-html.min.js.download"></script>
-      <script type="text/javascript" src="./boot.min.js.download"></script>
-      <link rel="stylesheet" type="text/css" href="./jasmine.min.css">
+    <script type="text/javascript" src="./jasmine.min.js.download"></script>
+    <script type="text/javascript" src="./jasmine-html.min.js.download"></script>
+    <script type="text/javascript" src="./boot.min.js.download"></script>
+    <link rel="stylesheet" type="text/css" href="./jasmine.min.css">
 
-  <style id="compiled-css" type="text/css">
-      
-  </style>
+    <style id="compiled-css" type="text/css">
+
+    </style>
 
 </head>
+
 <body>
-    
 
-  <!-- TODO: Missing CoffeeScript 2 -->
+    <!-- TODO: Missing CoffeeScript 2 -->
 
-  <script type="text/javascript">//<![CDATA[
+    <script type="text/javascript">
+        //<![CDATA[
 
+        //CODE TO IMPLEMENT TEST
+        describe("Email domain validator", function() {   
+            beforeEach(function() {
+                spyOn(window, 'get_domains').and.returnValue(['hvachurry.com', 'alexandercowan.com', 'corp.hvachurry.com']);
+            });
+            it("validates emails from our domains", function() {  
+                expect(check_domain('acowan@alexandercowan.com')).toBe(true);    
+            });  
+            it("invalidates emails not from our domains", function() {  
+                expect(check_domain('alex_cowan@stanfordalumni.org')).toBe(false);    
+            });
+            it("invalidates badly formatted domains", function() {      
+                expect(check_domain('alex_cowan@stanfordalumni')).toBe(false);    
+            });
+            it("validates subdomains from our domains", function() {      
+                expect(check_domain('acowan@corp.hvachurry.com')).toBe(true);    
+            })
+        });
 
+        //CODE UNDER TEST
+        //Validates email domain
+        function check_domain(email) {
+            OKdomains = get_domains();
+            //IRL, you'd want to validate the email address through an email (which Firebase does)
+            thisdomain = email.replace(/.*@/, "");
+            if (OKdomains.indexOf(thisdomain) > -1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
-//CODE TO IMPLEMENT TEST
-describe("Email domain validator", function() {      
-	beforeEach(function() {
-   	spyOn(window, 'get_domains').and.returnValue(['hvachurry.com', 'alexandercowan.com', 'corp.hvachurry.com']);
-  });
-	it("validates emails from our domains", function() {    
-		expect(check_domain('acowan@alexandercowan.com')).toBe(true);       
-	});   
-  it("invalidates emails not from our domains", function() {   
-		expect(check_domain('alex_cowan@stanfordalumni.org')).toBe(false);       
-	}); 
-  it("invalidates badly formatted domains", function() {           
-		expect(check_domain('alex_cowan@stanfordalumni')).toBe(false);       
-	}); 
-  it("validates subdomains from our domains", function() {           
-    expect(check_domain('acowan@corp.hvachurry.com')).toBe(true);       
-	})
-});
+        function get_domains() {
+            domains = ['gunk'];
+            return (domains);
+            //IRL, we'd probably want to pull this from a central source, but I decided to keep it simple for our puroses here ; ) 
+        }
 
-//CODE UNDER TEST
-//Validates email domain
-function check_domain(email) {
-	OKdomains = get_domains();
-  //IRL, you'd want to validate the email address through an email (which Firebase does)
-  thisdomain = email.replace(/.*@/, "");
-  if(OKdomains.indexOf(thisdomain) > -1){
-  	return true;
-  } else {
-  	return false;
-  }
-}
+        //]]>
+    </script>
 
-function get_domains() {
-	domains = ['gunk'];
-  return(domains);
-    //IRL, we'd probably want to pull this from a central source, but I decided to keep it simple for our puroses here ; ) 
-}
+    <script>
+        // tell the embed parent frame the height of the content
+        if (window.parent && window.parent.parent) {
+            window.parent.parent.postMessage(["resultsFrame", {
+                height: document.body.getBoundingClientRect().height,
+                slug: "esd4hL7r"
+            }], "*")
+        }
 
-
-
-  //]]></script>
-
-  <script>
-    // tell the embed parent frame the height of the content
-    if (window.parent && window.parent.parent){
-      window.parent.parent.postMessage(["resultsFrame", {
-        height: document.body.getBoundingClientRect().height,
-        slug: "esd4hL7r"
-      }], "*")
-    }
-
-    // always overwrite window.name, in case users try to set it manually
-    window.name = "result"
-  </script>
+        // always overwrite window.name, in case users try to set it manually
+        window.name = "result"
+    </script>
 
 
-<div class="jasmine_html-reporter"><div class="jasmine-banner"><a class="jasmine-title" href="http://jasmine.github.io/" target="_blank"></a><span class="jasmine-version">3.2.1</span><div class="jasmine-run-options"><span class="jasmine-trigger">Options</span><div class="jasmine-payload"><div class="jasmine-stop-on-failure"><input class="jasmine-fail-fast" id="jasmine-fail-fast" type="checkbox"><label class="jasmine-label" for="jasmine-fail-fast">stop execution on spec failure</label></div><div class="jasmine-throw-failures"><input class="jasmine-throw" id="jasmine-throw-failures" type="checkbox"><label class="jasmine-label" for="jasmine-throw-failures">stop spec on expectation failure</label></div><div class="jasmine-random-order"><input class="jasmine-random" id="jasmine-random-order" type="checkbox"><label class="jasmine-label" for="jasmine-random-order">run tests in random order</label></div><div class="jasmine-hide-disabled"><input class="jasmine-disabled" id="jasmine-hide-disabled" type="checkbox"><label class="jasmine-label" for="jasmine-hide-disabled">hide disabled tests</label></div></div></div></div><ul class="jasmine-symbol-summary"><li class="jasmine-passed" id="spec_spec1" title="Email domain validator invalidates emails not from our domains"></li><li class="jasmine-passed" id="spec_spec2" title="Email domain validator invalidates badly formatted domains"></li><li class="jasmine-passed" id="spec_spec3" title="Email domain validator validates subdomains from our domains"></li><li class="jasmine-passed" id="spec_spec0" title="Email domain validator validates emails from our domains"></li></ul><div class="jasmine-alert"><span class="jasmine-duration">finished in 0.014s</span><span class="jasmine-overall-result jasmine-bar  jasmine-passed ">4 specs, 0 failures<span class="jasmine-seed-bar">, randomized with seed <a title="randomized with seed 21104" href="https://fiddle.jshell.net/acowan/esd4hL7r/show/light/?seed=21104">21104</a></span></span></div><div class="jasmine-results"><div class="jasmine-failures"></div><div class="jasmine-summary"><ul class="jasmine-suite" id="suite-suite1"><li class="jasmine-suite-detail jasmine-passed"><a href="https://fiddle.jshell.net/acowan/esd4hL7r/show/light/?spec=Email%20domain%20validator">Email domain validator</a></li><ul class="jasmine-specs"><li class="jasmine-passed" id="spec-spec1"><a href="https://fiddle.jshell.net/acowan/esd4hL7r/show/light/?spec=Email%20domain%20validator%20invalidates%20emails%20not%20from%20our%20domains">invalidates emails not from our domains</a></li></ul><ul class="jasmine-specs"><li class="jasmine-passed" id="spec-spec2"><a href="https://fiddle.jshell.net/acowan/esd4hL7r/show/light/?spec=Email%20domain%20validator%20invalidates%20badly%20formatted%20domains">invalidates badly formatted domains</a></li></ul><ul class="jasmine-specs"><li class="jasmine-passed" id="spec-spec3"><a href="https://fiddle.jshell.net/acowan/esd4hL7r/show/light/?spec=Email%20domain%20validator%20validates%20subdomains%20from%20our%20domains">validates subdomains from our domains</a></li></ul><ul class="jasmine-specs"><li class="jasmine-passed" id="spec-spec0"><a href="https://fiddle.jshell.net/acowan/esd4hL7r/show/light/?spec=Email%20domain%20validator%20validates%20emails%20from%20our%20domains">validates emails from our domains</a></li></ul></ul></div></div></div></body></html>
+</body>
+</html>
