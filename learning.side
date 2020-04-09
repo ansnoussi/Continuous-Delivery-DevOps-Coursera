@@ -1,0 +1,133 @@
+{
+  "id": "29863598-b2bb-469c-96cc-1004930588c8",
+  "version": "2.0",
+  "name": "learning",
+  "url": "https://hvacnhurry.com",
+  "tests": [{
+    "id": "a00bd2b8-ae76-434b-bc27-f6405f07fed9",
+    "name": "register",
+    "commands": [{
+      "id": "0b933a70-9e94-441e-b2ef-c6c023ff0d52",
+      "comment": "",
+      "command": "open",
+      "target": "/auth/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "364ed2f3-0d2b-4d52-b77a-328f012f8eb5",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "968x680",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5cab1fe0-7562-4624-8fe0-3e901c83441f",
+      "comment": "",
+      "command": "click",
+      "target": "id=register-link",
+      "targets": [
+        ["id=register-link", "id"],
+        ["css=#register-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Register')]", "xpath:link"],
+        ["xpath=//a[@id='register-link']", "xpath:attributes"],
+        ["xpath=//form[@id='login-form']/h3/a", "xpath:idRelative"],
+        ["xpath=//h3/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d8e5e8d8-3301-4341-be94-39348c200264",
+      "comment": "",
+      "command": "click",
+      "target": "id=register_email",
+      "targets": [
+        ["id=register_email", "id"],
+        ["css=#register_email", "css:finder"],
+        ["xpath=//input[@id='register_email']", "xpath:attributes"],
+        ["xpath=//form[@id='register-form']/input", "xpath:idRelative"],
+        ["xpath=//form[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dee77d79-aae0-4d1b-b59a-46fadd9041c8",
+      "comment": "",
+      "command": "type",
+      "target": "id=register_email",
+      "targets": [
+        ["id=register_email", "id"],
+        ["css=#register_email", "css:finder"],
+        ["xpath=//input[@id='register_email']", "xpath:attributes"],
+        ["xpath=//form[@id='register-form']/input", "xpath:idRelative"],
+        ["xpath=//form[2]/input", "xpath:position"]
+      ],
+      "value": "anis02@alexandercowan.com"
+    }, {
+      "id": "a9c2b5fc-8909-4581-9ea4-c47ba4e85645",
+      "comment": "",
+      "command": "type",
+      "target": "id=register_pwd",
+      "targets": [
+        ["id=register_pwd", "id"],
+        ["css=#register_pwd", "css:finder"],
+        ["xpath=//input[@id='register_pwd']", "xpath:attributes"],
+        ["xpath=//form[@id='register-form']/input[2]", "xpath:idRelative"],
+        ["xpath=//form[2]/input[2]", "xpath:position"]
+      ],
+      "value": "password"
+    }, {
+      "id": "cf38e583-9247-4547-9463-6e02f575a3d3",
+      "comment": "",
+      "command": "type",
+      "target": "id=register_re_pwd",
+      "targets": [
+        ["id=register_re_pwd", "id"],
+        ["css=#register_re_pwd", "css:finder"],
+        ["xpath=//input[@id='register_re_pwd']", "xpath:attributes"],
+        ["xpath=//form[@id='register-form']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "password"
+    }, {
+      "id": "39a480a0-497f-4e5d-afbe-4a6d754bab8d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.auth-button:nth-child(4)",
+      "targets": [
+        ["css=.auth-button:nth-child(4)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
+        ["xpath=//form[@id='register-form']/button", "xpath:idRelative"],
+        ["xpath=//form[2]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "80a01394-4e7a-4117-80ea-70edd81bc0a7",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "2000"
+    }, {
+      "id": "cabafec4-1578-48c9-988b-d25413b1861d",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#menu-item-107 > a",
+      "targets": [
+        ["css=#menu-item-107 > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Log Out')]", "xpath:link"],
+        ["xpath=//li[@id='menu-item-107']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'https://hvacnhurry.com/auth/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": "LOG OUT"
+    }]
+  }],
+  "suites": [{
+    "id": "44d15b25-2fb2-43a2-99c5-22bfcac30ba0",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a00bd2b8-ae76-434b-bc27-f6405f07fed9"]
+  }],
+  "urls": ["https://hvacnhurry.com/"],
+  "plugins": []
+}
